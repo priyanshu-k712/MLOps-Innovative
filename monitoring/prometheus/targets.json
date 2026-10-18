@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "targets": [
+      "served_model_ds_76585f8d_v1:8000"
+    ],
+    "labels": {
+      "model_name": "model_ds_76585f8d",
+      "version": "1",
+      "container_name": "served_model_ds_76585f8d_v1"
+    }
+  }
+]
