@@ -1,4 +1,3 @@
-
 services:
   mlflow-server:
     image: python:3.10-slim
@@ -6,12 +5,16 @@ services:
     working_dir: /mlflow
     volumes:
       - model_factory_shared_data:/app/shared_data
-    command: >
-      sh -c "pip install --no-cache-dir mlflow==2.9.2 &&
-             mlflow server
-             --backend-store-uri sqlite:////app/shared_data/mlflow/mlflow.db
-             --default-artifact-root /app/shared_data/mlflow/artifacts
-             --host 0.0.0.0 --port 5000"
+    command:
+      - sh
+      - -c
+      - >-
+        mkdir -p /app/shared_data/mlflow/artifacts &&
+        pip install --no-cache-dir mlflow==2.9.2 &&
+        mlflow server
+        --backend-store-uri sqlite:////app/shared_data/mlflow/mlflow.db
+        --default-artifact-root /app/shared_data/mlflow/artifacts
+        --host 0.0.0.0 --port 5000
     ports:
       - "5000:5000"
     networks:
